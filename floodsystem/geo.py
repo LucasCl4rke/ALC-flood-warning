@@ -5,5 +5,4 @@
 geographical data.
 
 """
-
 from .utils import sorted_by_key  # noqa
