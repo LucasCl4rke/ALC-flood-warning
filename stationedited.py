@@ -40,6 +40,7 @@ class MonitoringStation:
         d += "   typical range: {}".format(self.typical_range)
         return d
 
+
     # what is self doing here? 
     def typical_range_consistent(self):
         if self.typical_range is None:
@@ -52,6 +53,6 @@ class MonitoringStation:
 def inconsistent_typical_range_stations(stations):
     inconsistent_stations = []
     for station in stations:
-        if station.typical_range_consistent() == False:
-            inconsistent_stations.append(station.name)
+        if stationedited.typical_range_consistent() == False:
+            inconsistent_stations.append(station)
     return inconsistent_stations

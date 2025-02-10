@@ -1,6 +1,6 @@
 from geo_stations_by_distance import stations_by_distance, build_station_list 
 
-from geo_stations_by_within_radius import stations_within_radius
+from geo_stations_within_radius import stations_within_radius
 
 # changeable point p
 
