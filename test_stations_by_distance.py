@@ -25,8 +25,7 @@ def test_stations_by_distance():
     # print(result3)
     # print(build_station_list()[:1])
 
-    print("Test passed")
-    print(build_station_list()[:1])
+    print("Test passed for stations_by_distance")
 
 
 test_stations_by_distance()

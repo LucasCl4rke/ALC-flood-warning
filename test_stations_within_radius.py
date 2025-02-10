@@ -1,37 +1,8 @@
 from floodsystem.stationdata import build_station_list
 
 from geo_stations_within_radius import stations_within_radius   
-import math 
 
-def test_stations_within_radius():
-    
-    stations = build_station_list()[:1]
-
-    centre = (52.2053, 0.1218)
-
-    # Call the function
-    result1 = stations_by_distance(stations, p)
-
-    result2 = result1[0]
-
-    result3 = result2[2]
-
-
-    assert round(result3, 4) == 90.9699
-
-    # print(result2)
-    # print(result3)
-    # print(build_station_list()[:1])
-
-    print("Test passed")
-
-
-test_stations_by_distance()
-
-
-
----------
-from geo_stations_by_distance import stations_by_distance, build_station_list 
+# import math 
 
 from haversine import haversine, Unit
 
@@ -45,3 +16,17 @@ def stations_within_radius(stations, centre, r):
     alpha_sorted = sorted(station_radius_list1)
 
     return alpha_sorted
+
+# changeable point p
+
+centre = (52.2053, 0.1218)
+
+r = 10 
+
+stations = build_station_list()
+
+alpha_sorted = stations_within_radius(stations, centre, r)
+
+assert alpha_sorted == ['Bin Brook', 'Cambridge Baits Bite', "Cambridge Byron's Pool", 'Cambridge Jesus Lock', 'Comberton', 'Dernford', 'Girton', 'Haslingfield Burnt Mill', 'Lode', 'Oakington', 'Stapleford']
+
+print("Test passed for stations_within_radius")
