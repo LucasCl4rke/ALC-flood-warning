@@ -42,7 +42,7 @@ class MonitoringStation:
 
     # what is self doing here? 
     def typical_range_consistent(self):
-        if self.typical_range is None:
+        if self.typical_range == None:
             return False
         if self.typical_range[0] < self.typical_range[1]:
             return True
