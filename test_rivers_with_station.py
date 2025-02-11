@@ -7,11 +7,16 @@ def rivers_with_station(stations):
     for station in stations:
         station_river_list.append(station.river)
         station_river_list = list(set(station_river_list))
-    
+
     return station_river_list
 
-stations = build_station_list()[:1]
+def test_rivers_with_station():
+    
+    stations = build_station_list()[:1]
 
-assert rivers_with_station(stations) == ['River Dikler']
+    assert rivers_with_station(stations) == ['River Dikler']
 
-print("Test passed for rivers_with_station")
+    
+
+
+

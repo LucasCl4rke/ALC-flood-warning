@@ -8,7 +8,6 @@ def test_stations_by_distance():
     
     stations = build_station_list()[:1]
 
-   
     p = (50.0, 0.0)
 
     # Call the function
@@ -24,8 +23,3 @@ def test_stations_by_distance():
     # print(result2)
     # print(result3)
     # print(build_station_list()[:1])
-
-    print("Test passed for stations_by_distance")
-
-
-test_stations_by_distance()

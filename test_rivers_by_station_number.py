@@ -12,22 +12,23 @@ def rivers_by_station_number(stations, N):
 
     return river_station_dict
 
-N = 3
+def test_rivers_by_station_number():
 
-river_station_dict = rivers_by_station_number(build_station_list(), N)
+    N = 3
 
-river_station_dict = {key: len(value) for key, value in river_station_dict.items()}
+    river_station_dict = rivers_by_station_number(build_station_list(), N)
 
-river_n_list = []
-for key, count in river_station_dict.items():
-    river_n_list.append((key, count))
+    river_station_dict = {key: len(value) for key, value in river_station_dict.items()}
 
-sorted_river_n_list = sorted(river_n_list, key=lambda x: x[1], reverse=True)
+    river_n_list = []
+    for key, count in river_station_dict.items():
+        river_n_list.append((key, count))
+
+    sorted_river_n_list = sorted(river_n_list, key=lambda x: x[1], reverse=True)
 
 
-topN_river_N_list = sorted_river_n_list[:N]
+    topN_river_N_list = sorted_river_n_list[:N]
 
 
-assert topN_river_N_list == [('River Thames', 55), ('River Avon', 32), ('River Great Ouse', 30)]
+    assert topN_river_N_list == [('River Thames', 55), ('River Avon', 32), ('River Great Ouse', 30)]
 
-print('Test passed for rivers_by_station_number')
