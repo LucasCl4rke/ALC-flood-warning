@@ -2,7 +2,7 @@ from geo_stations_by_distance import build_station_list
 
 from geo_rivers_by_station_number import rivers_by_station_number
 
-N = 10
+N = 9
 
 river_station_dict = rivers_by_station_number(build_station_list(), N)
 
