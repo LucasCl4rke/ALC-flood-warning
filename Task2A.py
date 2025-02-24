@@ -13,10 +13,8 @@ def run():
     update_water_levels(stations)
 
     # Print station and latest level for first 5 stations in list
-    names = [
-        'Bourton Dickler', 'Surfleet Sluice', 'Gaw Bridge', 'Hemingford',
-        'Swindon'
-    ]
+    names = ['Bourton Dickler', 'Surfleet Sluice', 'Gaw Bridge', 'Hemingford','Swindon']
+    
     for station in stations:
         if station.name in names:
             print("Station name and current level: {}, {}".format(
