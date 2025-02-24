@@ -16,19 +16,18 @@ def run():
 
     return relative_water_level_list
 
+# Had to put funtion in as importing wasnt working properly
+
 relative_water_level_list2 = run()
 
-def station_level_over_threshold(stations, tol):
-    stations_over_threshold = []
+def stations_highest_rel_level(stations, N):
+    highest_relative_water_level = []
     for station in stations:
-        if station[1] is not None and station[1] > tol:
+        if station[1] is not None:
             relative_level = station[1]
-            stations_over_threshold.append((station[0], relative_level))
-            stations_over_threshold_sorted = sorted(stations_over_threshold, key = lambda x: x[1], reverse = True)
-    return stations_over_threshold_sorted
-
-station_level_over_particular_threshold = station_level_over_threshold(relative_water_level_list2, 0.8)
-
-for i in range(len(station_level_over_particular_threshold)):
-    print(station_level_over_particular_threshold[i])
-
+            highest_relative_water_level.append((station[0], relative_level))
+            sorted_highest_relative_water_level = sorted(highest_relative_water_level, key = lambda x: x[1], reverse = True)
+    for i in range(len(sorted_highest_relative_water_level[:N])):
+        print(sorted_highest_relative_water_level[i])
+    
+stations_highest_rel_level(relative_water_level_list2, 10)
