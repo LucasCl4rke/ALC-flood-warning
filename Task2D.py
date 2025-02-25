@@ -14,7 +14,7 @@ def run():
     stations = build_station_list()
 
     # Station name to find
-    station_name = "Cam"
+    station_name = "Bourton Dickler"
 
     # Find station
     station_cam = None
@@ -41,6 +41,10 @@ def run():
     dt = 2
     dates, levels = fetch_measure_levels(
         station_cam.measure_id, dt=datetime.timedelta(days=dt))
+    
+    if not dates or not levels:
+        print(f"No water level data available for {station_cam.name}.")
+        return
 
     # Print level history
     for date, level in zip(dates, levels):

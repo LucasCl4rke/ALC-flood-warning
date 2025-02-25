@@ -9,7 +9,7 @@ def run():
     relative_water_level_list = []
 
     for station in stations:
-        if station.latest_level is not None and station.typical_range_consistent():
+        if station.latest_level is not None and station.latest_level > 0 and station.typical_range_consistent():
             relative_level = station.relative_water_level()
             if relative_level is not None:
                 relative_water_level_list.append((station.name, relative_level))
