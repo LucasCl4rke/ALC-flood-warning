@@ -112,18 +112,5 @@ def plot_water_levels(station, dates, levels):
     plt.show()
 
 for station_name in highest_5_names:
-    plot_water_levels(station_name, run(station_name)[0], run(station_name)[1])        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    plot_water_levels(station_name, run(station_name)[0], run(station_name)[1])
+    
