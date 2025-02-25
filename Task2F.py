@@ -61,7 +61,7 @@ def date_level(station_name):
         print("Station {} could not be found".format(station_name))
         return
 
-    dt = 10
+    dt = 2
     dates, levels = fetch_measure_levels(
         station_cam.measure_id, dt=datetime.timedelta(days=dt))
     
@@ -72,45 +72,51 @@ def date_level(station_name):
     # Print level history
     date_list = []
     level_list = []
+    last_valid_level = None
     for date, level in zip(dates, levels):
-        date_list.append((date))
-        if level > 0:
-            level_list.append((level))
+        date_list.append(date)
+        if level is not None  and level > 0:
+            last_valid_level = level
+            level_list.append(level)
         else:
-            level_list.append(None)
+            level_list.append(last_valid_level)
+            
     return (date_list, level_list)
 
 
+
+import matplotlib.dates as mdates
+
+
+
+import numpy as np
 import matplotlib.pyplot as plt
 
-def plot_water_levels(station, dates, levels):
+def polyfit(station, dates, levels, p):
 
-    t = dates
-    level = levels
+    # Create set of 10 data points on interval (0, 2)
+    x = dates
+    y = levels
 
-    # Plot
-    plt.plot(t, level, color='b', label="Water level")
+    # Find coefficients of best-fit polynomial f(x) of degree 4
+    p_coeff = np.polyfit(x, y, p)
 
-    stations = build_station_list()
+    # Convert coefficient into a polynomial that can be evaluated,
+    # e.g. poly(0.3)
+    poly = np.poly1d(p_coeff)
 
-    for station in stations:
-        if station.name == station_name:
-            plt.axhline(y=station.typical_range[0], color='g', linestyle='--', label="Typical Low")
-            plt.axhline(y=station.typical_range[1], color='r', linestyle='--', label="Typical High")
-            break
+    # Plot original data points
+    plt.plot(x, y, '.')
 
-    # Add axis labels, rotate date labels and add plot title
-    plt.xlabel('date')
-    plt.ylabel('water level (m)')
-    plt.xticks(rotation=45);
-    plt.title(station.name)
-    plt.legend()
+    # Plot polynomial fit at 30 points along interval
+    x1 = np.linspace(x[0], x[-1], 30)
+    plt.plot(x1, poly(x1))
+    plt.title(station)
 
     # Display plot
-    plt.tight_layout()  # This makes sure plot does not cut off date labels
-
     plt.show()
 
 for station_name in highest_5_names:
-    plot_water_levels(station_name, date_level(station_name)[0], date_level(station_name)[1])
-    
+    dates = date_level(station_name)[0]
+    polyfit_x = mdates.date2num(dates)
+    polyfit(station_name, polyfit_x, date_level(station_name)[1], 4)
